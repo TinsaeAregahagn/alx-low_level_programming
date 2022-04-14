@@ -1,18 +1,22 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * print_line -draws a straight line in the terminal
- * @n: the number of times that the special character must be printed
+ * print_line - prints underscores
+ * @n: limit
  *
- * Return: a straight line
+ * Return: void
  */
+
 void print_line(int n)
 {
-	int a = 1;
+int i;
 
-	while (a <= n)
-	{
-		_putchar(95);
-		a++;
-	}
-	_putchar('\n');
+if (n > 0)
+{
+for (i = 0; i < n; i++)
+{
+_putchar('_');
+}
+}
+_putchar('\n');
 }
