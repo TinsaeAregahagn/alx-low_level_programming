@@ -1,15 +1,20 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * _strlen - give the length of a string
- * @s: the string
+ *_strlen -length of a string
+ *@s: A pointer to an int that will be changed/updated
  *
- * Return: the length of a string
+ *Return: void that means our answer is correct
  */
+
 int _strlen(char *s)
 {
-	int i;
+int u;
 
-	for (i = 0 ; s[i] != '\0' ; i++)
-		;
-	return (i);
+u = 0;
+while (s[u] != '\0')
+{
+u++;
+}
+return (u);
 }

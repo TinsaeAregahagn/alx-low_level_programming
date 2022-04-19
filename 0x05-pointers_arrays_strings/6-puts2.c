@@ -1,21 +1,21 @@
-#include "holberton.h"
+#include "main.h"
+
 /**
- * puts2 - prints every other character of a string
- * @str: the string to print
+ *puts2 - prints every character of a string
+ *@str: A pointer to an int that will be changed
  *
+ *Return: void which means it is correct
  */
+
 void puts2(char *str)
 {
-	int i;
-	int j;
+int a;
 
-	for (i = 0 ; str[i] != '\0' ; i++)
-	{
-		;
-	}
-	for (j = 0 ; j < i ; j = j + 2)
-	{
-		_putchar(str[j]);
-	}
-	_putchar('\n');
+for (a = 0; str[a] != '\0'; a++)
+{
+if (a % 2 == 0)
+_putchar (str[a]);
+}
+
+_putchar ('\n');
 }
