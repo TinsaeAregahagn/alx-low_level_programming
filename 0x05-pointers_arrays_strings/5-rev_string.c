@@ -1,36 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "main.h"
 
 /**
- *  * main - generates random valid passwords
- *   *
- *    * Return: Always 0
- *     */
+ * rev_string - prints a string in reverse
+ * @s: string to be reversed
+ * Return: 0
+ */
 
-int main(void)
+void rev_string(char *s)
 {
-	char k[200];
-	int num = 0;
-	int random = 0;
-	char *key = k;
+	int len, i, half;
+	char temp;
 
-	srand(time(NULL));
+	for (len = 0; s[len] != '\0'; len++)
+	;
+	i = 0;
+	half = len / 2;
 
-	while (num < 2645)
+	while (half--)
 	{
-		random = rand() % 122;
-
-		if (random > 32)
-		{
-			*key = random;
-			key = key + 1;
-			num += random;
-		}
+		temp = s[len - i - 1];
+		s[len - i - 1] = s[i];
+		s[i] = temp;
+		i++;
 	}
-
-	*key = (2772 - num);
-	*(key + 1) = '\n';
-	printf("%s", k);
-	return (0);
 }
