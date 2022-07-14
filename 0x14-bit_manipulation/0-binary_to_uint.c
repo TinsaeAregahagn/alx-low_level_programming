@@ -1,35 +1,48 @@
-#include "holberton.h"
+#include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
- * binary_to_uint - converts binary number to an unsigned
- * @b: a string of 0 and 1 chars
+ * _strlen - find the length of a string
+ * @s: pointer to the string to check
+ * Return: void
+*/
+
+
+int _strlen(const char *s)
+{
+int i = 0;
+while (s[i])
+	i++;
+
+return (i);
+}
+
+
+/**
+ * binary_to_uint - converts a binary number to an unsigned int
+ * @b: binary number
  *
- * Return: the convertd number or 0 if b is NULL or different from 0 or 1
+ * Return: 0 or converted number
  */
+
 unsigned int binary_to_uint(const char *b)
 {
-	int length, i, add;
+	unsigned int n = 0;
+	int i, len;
 
-	add = 0;
-
-	if (b != NULL)
-	{
-		for (length = 0 ; b[length] != '\0' ; length++)
-		{
-			if (b[length] != 48 && b[length] != 49)
-			{
-				return (0);
-			}
-		}
-
-		for (i = 0, length-- ; length >= 0 ; length--)
-		{
-			add = add + ((b[length] - '0') << i);
-			i++;
-		}
-	}
-	else
-	{
+	if (b == NULL)
 		return (0);
+
+	len = _strlen(b);
+
+	for (i = 0; i != len; i++)
+	{
+		if (b[len - i - 1] == '1')
+			n += 1 << i;
+		else if (b[len - i - 1] != '0')
+			return (0);
 	}
-	return (add);
+
+	return (n);
 }

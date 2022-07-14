@@ -1,23 +1,24 @@
 #include "lists.h"
+#include <stdlib.h>
+
 /**
- * get_nodeint_at_index - return the nth node of a linked list
- * @head: the pointer to the struct
- * @index: index of the node
- *
- * Return: the nth node of a linked list
- */
+ * get_nodeint_at_index - Find a node in a list.
+ * @head: Address of the first node in a list.
+ * @index: Position of a the node to find (starting from 0).
+ * Return: Node address.
+ **/
+
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	unsigned int check = 0;
+	unsigned int y = 0;
 
-	while (head != NULL)
+	if (head == NULL)
+		return (NULL);
+	for (y = 0; y < index; y++)
 	{
-		if (check == index)
-		{
-			return (head);
-		}
-		check++;
 		head = head->next;
+		if (head == NULL)
+			return (NULL);
 	}
-	return (NULL);
+	return (head);
 }

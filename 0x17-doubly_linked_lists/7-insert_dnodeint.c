@@ -1,50 +1,57 @@
 #include "lists.h"
+
 /**
- * insert_dnode_at_index - inserts a new node at a given posotion
- * @h: the pointer to the struct
- * @idx: index of the list where the new node should be added
- * @n: integer in the struct
- * Return: Address of the new node or NULL if it failed
+ * insert_node - insert node at given index
+ * @tmp: ptr to nth position node in doubly linked list
+ * @n: node data
+ * Return: address of inserted node
  */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h,
-unsigned int idx, int n)
+dlistint_t *insert_node(dlistint_t *tmp, int n)
 {
-	dlistint_t *newnode, *current = *h, *prev;
-	unsigned int index;
+	dlistint_t *new;
 
-	if (*h == NULL && idx != 0)
+	new = malloc(sizeof(struct dlistint_s));
+	if (!new)
 		return (NULL);
-	newnode = malloc(sizeof(dlistint_t));
-	if (newnode == NULL)
+	new->n = n;
+
+	new->next = tmp;
+	new->prev = tmp->prev;
+	tmp->prev->next = new;
+	tmp->prev = new;
+
+	return (new);
+}
+
+/**
+ * insert_dnodeint_at_index - create and insert node at nth index
+ * @h: pointer to head of list
+ * @idx: index
+ * @n: node data
+ * Return: address of inserted node, or NULL if failed
+ */
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+{
+	dlistint_t *tmp;
+
+	/* insert at beginning if empty or existing linked list */
+	if (idx == 0)
+		return (add_dnodeint(h, n));
+	if (!h)
 		return (NULL);
 
-	if (*h != NULL)
-	{prev = NULL;
-		while (current->prev != NULL)
-			current = current->prev;
-		for (index = 0; current != NULL && index < idx; index++)
-		{prev = current;
-			current = current->next;
-		}
-		if (index == idx)
-		{newnode->n = n;
-			newnode->prev = prev;
-			if (current != NULL)
-				current->prev = newnode;
-			newnode->next = current;
-			if (idx == 0)
-			{*h = newnode;
-			}
-			else
-			{prev->next = newnode;
-			}
-			return (newnode);
-		}
-		return (NULL);
+	/* insert in the middle of list */
+	tmp = *h;
+	while ((idx != 0) && (tmp->next))
+	{
+		idx -= 1;
+		tmp = tmp->next;
+		if (idx == 0)
+			return (insert_node(tmp, n));
 	}
-	newnode->next = NULL;
-	newnode->prev = NULL;
-	newnode->n = n;
-	*h = newnode;
-	return (newnode);
+
+	/* insert at the end of list if idx is one after last node */
+	if (idx == 1)
+		return (add_dnodeint_end(h, n));
+	return (NULL);
 }

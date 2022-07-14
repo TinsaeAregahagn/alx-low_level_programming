@@ -1,38 +1,46 @@
 #include <stdlib.h>
 
 /**
- * **alloc_grid - returns a pointer to a 2 dimensional array of integers.
- * @width: int
- * @height: int
- * Return: Null on failure
+ * alloc_grid - Creates a 2 dimensional array of integers
+ *
+ * @width: Width/rows of the 2D array
+ *
+ * @height: Height/columns of the 2D array
+ *
+ * Return: Pointer to a 2 dimenstional array of integers
  */
 
 int **alloc_grid(int width, int height)
 {
-int **tab, j, k;
-tab = malloc(sizeof(*tab) * height);
+	int i, j, f, **alloc_mem;
 
-if (width <= 0 || height <= 0 || tab == 0)
-	return (NULL);
+	if (width <= 0 || height <= 0)
+		return ('\0');
 
-else
-{
-	for (j = 0; j < height; j++)
+	alloc_mem = malloc(sizeof(int *) * height);
+
+	if (alloc_mem == NULL)
 	{
-		tab[j] = malloc(sizeof(**tab) * width);
-		if (tab[j] == 0)
+		free(alloc_mem);
+		return ('\0');
+	}
+
+	for (i = 0; i < height; i++)
+	{
+		alloc_mem[i] = malloc(sizeof(int) * width);
+
+		if (alloc_mem[i] == NULL)
 		{
-			/*Free everything if malloc fails*/
-			while (j--)
-				free(tab[j]);
-			free(tab);
-			return (NULL);
+			for (f = i; f >= 0; f--)
+				free(alloc_mem[f]);
+
+			free(alloc_mem);
+			return ('\0');
 		}
 
-		for (k = 0; k < width; k++)
-			tab[j][k] = 0;
+		for (j = 0; j < width; j++)
+			alloc_mem[i][j] = 0;
 	}
-}
 
-return (tab);
+	return (alloc_mem);
 }

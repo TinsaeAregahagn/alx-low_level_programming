@@ -1,45 +1,46 @@
-#include "holberton.h"
+#include "main.h"
 /**
- * append_text_to_file - appends text at the end of a file
- * @filename: name of the file
- * @text_content: string to write to the file
- *
- * Return: 1 on Success or -1 on Failure
- */
+  * _strlen - length of a string
+  * @s: input char
+  * Return: length of a string
+**/
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
+/**
+* append_text_to_file - appends text at the end of a file.
+* @filename: file to append.
+* @text_content: info to append into the file.
+* Return: 1 on success, -1 on failure
+*/
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int filed, i;
+	ssize_t nletters;
+	int file;
 
-	if (text_content == NULL)
+	if (!filename)
+		return (-1);
+	file = open(filename, O_WRONLY | O_APPEND);
+	if (file == -1)
 	{
-		text_content = "";
+		return (-1);
 	}
-
-	for (i = 0 ; text_content[i] != '\0' ; i++)
-		;
-
-	filed = open(filename, O_WRONLY | O_APPEND);
-
-	if (filed == -1)
-		return (-1);
-
-	write(filed, text_content, i);
-
-	close(filed);
-	return (1);
-
-	if (filename == NULL)
-		return (-1);
-
-	if (text_content == NULL)
+	if (text_content)
 	{
-		if (filename != NULL)
+		nletters = write(file, text_content, _strlen(text_content));
+		if (nletters == -1)
 		{
-			return (1);
-		}
-		else
-		{
+			close(file);
 			return (-1);
 		}
 	}
+	close(file);
+	return (1);
 }

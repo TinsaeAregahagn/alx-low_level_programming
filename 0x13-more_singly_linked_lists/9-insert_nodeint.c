@@ -1,44 +1,40 @@
 #include "lists.h"
+#include <stdlib.h>
+
 /**
- * insert_nodeint_at_index - inserts a new node at a given position
- * @head: the pointer to the struct
- * @n: integer in the struct
- * @idx: index of the list where the new node should be added
- *
- * Return: the address of the new node or NULL if it failed
- */
+ * insert_nodeint_at_index - Insert a new node at a given positiion.
+ * @head: First node address.
+ * @idx: Position of the new node to be inserted in.
+ * @n: Data of the new node.
+ * Return: Address of the new node.
+ **/
+
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *newnode, *move = *head;
-	unsigned int index;
+	listint_t *new_node, *temp;
+	unsigned int i = 0;
 
-	newnode = malloc(sizeof(listint_t));
-
-	if (newnode == NULL)
+	if (*head == NULL && idx != 0)
+		return (NULL);
+	if (idx != 0)
 	{
+	temp = *head;
+	for (; i < idx - 1 && temp != NULL; i++)
+		temp = temp->next;
+	if (temp == NULL)
 		return (NULL);
 	}
-
-	newnode->n = n;
-
+	new_node = malloc(sizeof(listint_t));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->n = n;
 	if (idx == 0)
 	{
-		newnode->next = *head;
-		*head = newnode;
+		new_node->next = *head;
+		*head = new_node;
+		return (new_node);
 	}
-	else
-	{
-		for (index = 0 ; index < idx - 1 ; index++)
-		{
-			move = move->next;
-			if (move == NULL)
-			{
-				free(newnode);
-				return (NULL);
-			}
-		}
-		newnode->next = move->next;
-		move->next = newnode;
-	}
-	return (newnode);
+	new_node->next = temp->next;
+	temp->next = new_node;
+	return (new_node);
 }

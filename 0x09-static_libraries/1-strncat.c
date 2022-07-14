@@ -1,12 +1,31 @@
-#include "main.h"
-
 /**
- * _isdigit - checks if a character is digit
- * @c - carrier variable
- * Return: 1 if true, otherwise 0
- */
+ * _strncat - a function that concatenates two strings.
+ *
+ * @dest: pointer to destination input
+ * @src: pointer to source input
+ * @n: most number of bytes from @src
+ *
+ * Return: @dest
+*/
 
-int _isdigit(int c)
+char *_strncat(char *dest, char *src, int n)
 {
-	return (c >= 48 && c <= 57);
+	int c, i;
+
+	c = 0;
+
+	/*find size of dest array*/
+	while (dest[c])
+		c++;
+
+	/**
+	 * src does not need to be null terminated
+	 * if it contains n or more bytes
+	*/
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[c + i] = src[i];
+	/*null terminate dest*/
+	dest[c + i] = '\0';
+
+	return (dest);
 }

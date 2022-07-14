@@ -1,59 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
-/**
- * isInteger - checks if s is an integer
- * @s: string to check
- * Return: 0 or 1
- */
-
-int isInteger(const char *s)
-{
-int i = 0;
-while (s[i] != '\0')
-{
-	if (s[i] < '0' || s[i] > '9')
-		return (0);
-	i++;
-}
-return (1);
-}
 
 /**
- * main - adds positive numbers
- * @argc: int
- * @argv: list
- * Return: 0
+ * main - entry point
+ *
+ * @argc: integer, length of @argv
+ *
+ * @argv: one-dimensional array of strings, arguments of this program
+ *
+ * Return: 0, success
  */
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-int i = 0, coinUsed = 0, coin = 0;
-int coins[] = {25, 10, 5, 2, 1};
+	int result, amount, cent;
 
-if (argc != 2)
-{
-	printf("Error\n");
-	return (1);
-}
-if (isInteger(argv[1]))
-{
-	i = atoi(argv[1]);
-	while (i > 0 && coin <= 4)
+	if (argc != 2)
 	{
-		if (i >= coins[coin])
-		{
-			i -= coins[coin];
-			coinUsed++;
-		}
-		else
-		{
-			coin++;
-		}
+		printf("Error\n");
+		return (1);
 	}
-}
 
-printf("%i\n", coinUsed);
+	result = 0;
+	amount  = atoi(argv[1]);
 
-return (0);
+	if (amount < 0)
+	{
+		printf("0\n");
+		return (0);
+	}
+
+	while (amount)
+	{
+		if (amount >= 25)
+			cent = 25;
+		else if (amount >= 10)
+			cent = 10;
+		else if (amount >= 5)
+			cent = 5;
+		else if (amount >= 2)
+			cent = 2;
+		else
+			cent = 1;
+
+		result += amount / cent;
+		amount %= cent;
+	}
+
+	printf("%d\n", result);
+	return (0);
 }

@@ -1,22 +1,21 @@
 #include <stdio.h>
 /**
- * main - Entry point
- *
- * Return: Always 0 (Success)
- */
+* main - Entry point
+*
+* Description: print alphabet in lowercase then in uppercase
+*
+* Return: Always 0 (Success)
+*/
 int main(void)
 {
-	char alpha;
-	char bet;
+int c;
 
-	for (alpha = 'a' ; alpha <= 'z' ; alpha++)
-	{
-		putchar(alpha);
-	}
-	for (bet = 'A' ; bet <= 'Z' ; bet++)
-	{
-		putchar(bet);
-	}
-	putchar('\n');
-	return (0);
+for (c = 0; c < 26; ++c)
+putchar ('a' + c);
+for (c = 0; c < 26; ++c)
+putchar ('A' + c);
+
+putchar ('\n');
+
+return (0);
 }

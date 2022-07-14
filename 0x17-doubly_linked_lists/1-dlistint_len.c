@@ -1,18 +1,28 @@
 #include "lists.h"
+
 /**
- * dlistint_len - returns the number of elements in a list
- * @h: the pointer that points to the struct
- *
- * Return: the number of elements in a list
+ * dlistint_len - prints all the elements of a dlistint_t list
+ * @h: pointer to head of the dlistint_t list
+ * Return: number of nodes of dlistint_t list
  */
+
+
 size_t dlistint_len(const dlistint_t *h)
 {
-	int elem_node = 0;
+	size_t num_of_nodes = 0;
+	dlistint_t *current_node;
 
-	while (h != NULL)
+	if (!h)
+		return (num_of_nodes);
+
+	num_of_nodes++;
+	current_node = h->next;
+
+	while (current_node)
 	{
-		h = h->next;
-		elem_node++;
+		num_of_nodes++;
+		current_node = current_node->next;
 	}
-	return (elem_node);
+
+	return (num_of_nodes);
 }

@@ -1,16 +1,23 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
- * str_concat - Concatenates two strings.
- * @s1: string to be concatenated on.
- * @s2: The string to be concatenated to s1.
- * Return: NULL on failure, otherwise, the newly concatenated string
+ * str_concat - Concatenate two strings
+ *
+ * @s1: A string to be concatenated
+ *
+ * @s2: A string to be concatenated
+ *
+ * Return: Pointer to newly allocated memory
+ * which is equal to @s1 + @s2 (SUCCESS) OR
+ * NULL (FAILURE)
  */
+
 char *str_concat(char *s1, char *s2)
 {
-	char *concat_str;
-	int con, concat_con = 0, len = 0;
+	unsigned int s1_length = 0;
+	unsigned int s2_length = 0;
+	char *alloc_mem;
+	unsigned int i, j;
 
 	if (s1 == NULL)
 		s1 = "";
@@ -18,19 +25,21 @@ char *str_concat(char *s1, char *s2)
 	if (s2 == NULL)
 		s2 = "";
 
-	for (con = 0; s1[con] || s2[con]; con++)
-		len++;
+	while (*(s1 + s1_length) != '\0')
+		s1_length++;
 
-	concat_str = malloc(sizeof(char) * len);
+	while (*(s2 + s2_length) != '\0')
+		s2_length++;
 
-	if (concat_str == NULL)
-		return (NULL);
+	alloc_mem = malloc(1 + (s1_length * sizeof(*s1)) + (s2_length * sizeof(*s2)));
+	if (alloc_mem == NULL)
+		return ('\0');
 
-	for (con = 0; s1[con]; con++)
-		concat_str[concat_con++] = s1[con];
+	for (i = 0; i < s1_length; i++)
+		alloc_mem[i] = *(s1 + i);
 
-	for (con = 0; s2[con]; con++)
-		concat_str[concat_con++] = s2[con];
+	for (j = 0; j < s2_length; j++, i++)
+		alloc_mem[i] = *(s2 + j);
 
-	return (concat_str);
+	return (alloc_mem);
 }
