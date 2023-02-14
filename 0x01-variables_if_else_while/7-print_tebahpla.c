@@ -1,23 +1,22 @@
-#include<stdio.h>
-
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 /**
- * main - Entry point
- *
- * Description: print a-z in reverse
- *
- * Return: Always 0 (Success)
-*/
-
+ * main - main block
+ * Description: prints all single digit numbers of base 10
+ * starting from 0, followed by a new line.
+ * Return: 0
+ */
 int main(void)
 {
-char ch = 'z';
+	char c = 'z';
 
-while (ch >= 'a')
-{
-putchar(ch);
---ch;
-}
-putchar('\n');
+	while (c >= 'a')
+	{
+		putchar(c);
+		c--;
+	}
 
-return (0);
+	putchar('\n');
+	return (0);
 }

@@ -1,44 +1,33 @@
 #include "main.h"
 /**
- * puts_half - print half of a string
- *
- * @str: string input pointer
- *
- * Return: nothing
+ * puts_half - prints a string, followed by a new line,
+ * @str: pointer to the string to print
+ * Return: void
 */
 
 void puts_half(char *str)
 {
-	int i, c = 0, m;
+	int len, n, i;
 
-	/* find the length of array - null character*/
-	while (c >= 0)
+	len = 0;
+
+	while (str[len] != '\0')
 	{
-		if (str[c] == '\0')
-			break;
-		c++;
+		len++;
 	}
 
-	/*check if length is even or not*/
-	if (c % 2 == 0)
+	if (len % 2 == 0)
 	{
-		/**
-		 * if length is even,
-		 * i is half the length
-		*/
-		m = c / 2;
-		for (i = m; i < c; i++)
+		for (i = len / 2; str[i] != '\0'; i++)
+		{
 			_putchar(str[i]);
-	}
-	else
+		}
+	} else if (len % 2)
 	{
-		/**
-		 * if length is odd,
-		 * i is half of length - 1
-		*/
-		m = (c - 1) / 2;
-		for (i = m + 1; i < c; i++)
-			_putchar(str[i]);
+		for (n = (len - 1) / 2; n < len - 1; n++)
+		{
+			_putchar(str[n + 1]);
+		}
 	}
 	_putchar('\n');
 }

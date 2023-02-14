@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - Entry point, prints file name it was compiled from
+ * main - check the code for Holberton School students.
  *
- * Return: 0 (Success)
+ * Return: Always 0.
  */
 
 int main(void)
@@ -11,3 +11,4 @@ int main(void)
 	printf("%s\n", __FILE__);
 	return (0);
 }
+

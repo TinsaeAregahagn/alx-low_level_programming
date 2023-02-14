@@ -1,94 +1,51 @@
-#include <stdlib.h>
 #include "dog.h"
-
-int _strLen(char *str);
-void fillMem(char *str, int strLen, char *dest);
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * new_dog - Creates a new dog
- *
- * @name: Name of dog
- *
- * @age: Age of dog
- *
- * @owner: Owner of dog
- *
- * Return: Pointer to the newly created dog (SUCCESS) or
- * NULL if insufficient memory was available (FAILURE)
+ * new_dog - new dog
+ * @name: name's dog
+ * @age: age's dog
+ * @owner: owner's dog
+ * Return: newdog
  */
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *n_dog;
-	int nameLen, ownerLen;
 
-	n_dog = malloc(sizeof(dog_t));
+	int i = 0, j = 0, k;
+	dog_t *doge;
 
-	if (n_dog == NULL)
-		return (NULL);
-
-	nameLen = _strLen(name);
-	n_dog->name = malloc(sizeof(char) * nameLen + 1);
-
-	if (n_dog->name == NULL)
-	{
-		free(n_dog);
-		return (NULL);
-	}
-
-	fillMem(name, nameLen, n_dog->name);
-
-	ownerLen = _strLen(owner);
-	n_dog->owner = malloc(sizeof(char) * ownerLen + 1);
-
-	if (n_dog->owner == NULL)
-	{
-		free(n_dog);
-		free(n_dog->name);
-		return (NULL);
-	}
-
-	fillMem(owner, ownerLen, n_dog->owner);
-
-	n_dog->age = age;
-
-	return (n_dog);
-}
-
-/**
- * _strLen - Get length of a string
- *
- * @str: A string
- *
- * Return: Length of string
- */
-
-int _strLen(char *str)
-{
-	int i = 0;
-
-	while (str[i])
+	while (name[i] != '\0')
 		i++;
-
-	return (i);
+	while (owner[j] != '\0')
+		j++;
+	doge = malloc(sizeof(dog_t));
+	if (doge == NULL)
+	{
+		free(doge);
+		return (NULL);
+	}
+	doge->name = malloc(i * sizeof(doge->name));
+	if (doge->name == NULL)
+	{
+		free(doge->name);
+		free(doge);
+		return (NULL);
+	}
+	for (k = 0; k <= i; k++)
+		doge->name[k] = name[k];
+	doge->age = age;
+	doge->owner = malloc(j * sizeof(doge->owner));
+	if (doge->owner == NULL)
+	{
+		free(doge->owner);
+		free(doge->name);
+		free(doge);
+		return (NULL);
+	}
+	for (k = 0; k <= j; k++)
+		doge->owner[k] = owner[k];
+	return (doge);
 }
 
-/**
- * fillMem - Copy string literal to allocated memory
- *
- * @str: String literal
- *
- * @strLen: @str length
- *
- * @dest: The allocated memory
- */
-
-void fillMem(char *str, int strLen, char *dest)
-{
-	int i;
-
-	for (i = 0; i < strLen; i++)
-		dest[i] = str[i];
-
-	dest[i] = '\0';
-}

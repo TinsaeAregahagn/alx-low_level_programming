@@ -1,25 +1,23 @@
-#include<stdio.h>
-
+#include <stdio.h>
 /**
- * main - Entry point
- *
- * Description: print all aplhabet letters except q and e
- *
- * Return: Always 0 (Success)
-*/
-
+ * main - main block
+ * Description: Get a random number and check its last digit, compare it with 5
+ * Return: 0
+ */
 int main(void)
 {
-char ch = 'a';
+	char c = 'a';
 
-while (ch <= 'z')
-{
-if (ch == 'e' || ch == 'q')
-++ch;
-putchar(ch);
-++ch;
-}
-putchar('\n');
+	while (c <= 'z')
+	{
+		if (c != 'e' && c != 'q')
+		{
+			putchar(c);
+		}
+		c++;
+	}
 
-return (0);
+	putchar('\n');
+	return (0);
 }
+

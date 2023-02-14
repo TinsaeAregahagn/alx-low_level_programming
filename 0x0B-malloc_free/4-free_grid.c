@@ -1,23 +1,21 @@
 #include <stdlib.h>
 
 /**
- * free_grid - Free a 2 dimensional grid previously created by your
- * alloc_grid function
- *
- * @grid: The grid we'll free up
- * @height: The number of rows in the grid
- *
- * Return: Nothing
+ * free_grid - alloc_grid
+ * @grid: pointer to 2D arrays
+ * @height: array
+ * Return: void
  */
 
 void free_grid(int **grid, int height)
 {
-	int i = 0;
+	height--;
 
-	while (i < height)
+	while (height >= 0)
 	{
-		free(grid[i]);
-		i++;
+		free(*(grid + height));
+		height--;
 	}
 	free(grid);
 }
+

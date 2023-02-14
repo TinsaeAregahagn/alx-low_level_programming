@@ -1,46 +1,47 @@
+#include <stdio.h>
 #include <stdlib.h>
-
 /**
- * alloc_grid - Creates a 2 dimensional array of integers
+ * alloc_grid - prints a grid of integers
+ * @width: width of the grid
+ * @height: height of the grid
  *
- * @width: Width/rows of the 2D array
- *
- * @height: Height/columns of the 2D array
- *
- * Return: Pointer to a 2 dimenstional array of integers
+ * Return: pointer..
  */
-
 int **alloc_grid(int width, int height)
 {
-	int i, j, f, **alloc_mem;
+int **s, r, c;
 
 	if (width <= 0 || height <= 0)
-		return ('\0');
-
-	alloc_mem = malloc(sizeof(int *) * height);
-
-	if (alloc_mem == NULL)
 	{
-		free(alloc_mem);
-		return ('\0');
+		return (NULL);
 	}
 
-	for (i = 0; i < height; i++)
+	s = malloc(sizeof(int *) * height);
+	if (s == NULL)
 	{
-		alloc_mem[i] = malloc(sizeof(int) * width);
+		return (NULL);
+	}
 
-		if (alloc_mem[i] == NULL)
+	for (r = 0; r < height; r++)
+	{
+		s[r] = malloc(sizeof(int) * width);
+
+		if (s[r] == NULL)
 		{
-			for (f = i; f >= 0; f--)
-				free(alloc_mem[f]);
-
-			free(alloc_mem);
-			return ('\0');
+			for (; r >= 0; r--)
+			{
+				free(s[r]);
+			}
+			free(s);
+			return (NULL);
 		}
 
-		for (j = 0; j < width; j++)
-			alloc_mem[i][j] = 0;
+		for (c = 0; c <= width; c++)
+		{
+			s[r][c] = 0;
+		}
 	}
+	return (s);
 
-	return (alloc_mem);
 }
+

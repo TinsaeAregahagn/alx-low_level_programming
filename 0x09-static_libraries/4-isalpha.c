@@ -1,32 +1,24 @@
 #include "main.h"
 
 /**
- * _isalpha - Return 1 if c is a letter. lowercase or uppercase
+ * _isalpha - check the code for Holberton School students.
  *
- *    *@c: The int to print
+ * @c: is c an integer argument
  *
- *     * Return: Always 0.
+ * Return: Always 0.
  */
 
 int _isalpha(int c)
-
 {
 
-
-	if ((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))
-
+	if (c >= 97 && c <= 122)
 	{
-
 		return (1);
-
 	}
-
-
-	else
-
+	else if (c >= 65 && c <= 90)
 	{
-
-		return (0);
-
+		return (1);
 	}
+	return (0);
 }
+

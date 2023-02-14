@@ -1,24 +1,30 @@
 #include "main.h"
+
 /**
- * print_diagonal - print character "\" n times
- * @n: number of characters to draw
+ * print_diagonal - check for a digit
+ * @n : number of \\ to be printed
+ * Return:void
  */
 
 void print_diagonal(int n)
 {
-	int draw;
-	int space;
 
-	if (n > 0)
+	int i = 0, ii;
+
+	while (i < n && n > 0)
 	{
-		for (draw = 1; draw <= n; draw++)
+		ii = 0;
+		while (ii < i)
 		{
-			for (space = 1; space < draw; space++)
-				_putchar(' ');
-			_putchar('\\');
-			_putchar('\n');
+			_putchar(' ');
+			ii++;
 		}
-	}
-	else
+
+		_putchar('\\');
 		_putchar('\n');
+		i++;
+	}
+	if (i == 0)
+		_putchar('\n');
+
 }

@@ -1,1 +1,1 @@
-rd
+pointers and strings

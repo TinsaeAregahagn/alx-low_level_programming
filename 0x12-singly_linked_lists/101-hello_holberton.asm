@@ -1,17 +1,9 @@
-section .data
-	msg: db "Hello, Holberton", 0x0a
-	msglen equ $-msg
-
-section .text
-	global main
-
+          global    main
+          extern    printf
 main:
-	; write HelloHolberton to screen
-	mov eax, 1 ; syscall for write
-	mov edi, 1
-	mov rsi, msg
-	mov edx, msglen
-	syscall
-	mov eax, 60 ; 60 is exit
-	xor edi, edi ; exit (0)
-	syscall
+	  mov   edi, format
+	  xor   eax, eax
+	  call  printf
+	  mov 	eax, 0
+	  ret
+format: db `Hello, Holberton\n`,0

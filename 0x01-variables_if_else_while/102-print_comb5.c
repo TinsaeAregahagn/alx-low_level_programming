@@ -1,43 +1,49 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
- * main - a simple program that outputs unordered
- * combinations of two digit integers without duplicates
- *
- * Return: 0 on success
+ * main - main block
+ * Description: Write a program that prints all possible
+ * different combinations of two digits
+ * Return: 0
  */
 int main(void)
 {
-int ifirst;
-int i;
-int jfirst;
-int j;
+	int c = 0;
+	int f_d;
+	int l_d;
 
-for (ifirst = 48; ifirst < 58; ifirst++)
-{
-for (i = 48; i < 58; i++)
-{
-j = i + 1;
-jfirst = ifirst;
-for (; jfirst < 58; jfirst++)
-{
-for (; j < 58; j++)
-{
-putchar(ifirst);
-putchar(i);
-putchar(' ');
-putchar(jfirst);
-putchar(j);
-if (ifirst != 57 || jfirst != 57 || i != 56 || j != 57)
-{
-putchar(',');
-putchar(' ');
-}
-}
-j = 48;
-}
-}
-}
-putchar('\n');
-return (0);
+	int c2;
+	int f_d2;
+	int l_d2;
+
+	while (c <= 98)
+	{
+		f_d = (c / 10 + '0');
+		l_d = (c % 10 + '0');
+		c2 = 0;
+		while (c2 <= 99)
+		{
+			f_d2 = (c2 / 10 + '0');
+			l_d2 = (c2 % 10 + '0');
+
+			if (c < c2)
+			{
+				putchar(f_d);
+				putchar(l_d);
+				putchar(' ');
+				putchar(f_d2);
+				putchar(l_d2);
+
+				if (c != 98)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+			c2++;
+		}
+		c++;
+	}
+	putchar('\n');
+	return (0);
 }

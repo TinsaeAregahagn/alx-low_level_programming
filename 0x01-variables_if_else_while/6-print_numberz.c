@@ -1,25 +1,20 @@
-#include<stdio.h>
-
+#include <stdio.h>
 /**
- * main - Entry point
- *
- * Description: print 0-9 using putchar
- *              while using int variable
- *
- * Return: Always 0 (Success)
-*/
-
+ * main - main block
+ * Description: prints all single digit numbers of base 10
+ * starting from 0, followed by a new line.
+ * Return: 0
+ */
 int main(void)
 {
-int digit = 0;
+	int c = 0;
 
-while (digit <= 9)
-{
-/*convert digit to ASCII representation*/
-putchar(digit + '0');
-++digit;
-}
-putchar('\n');
+	while (c < 10)
+	{
+		putchar(48 + c);
+		c++;
+	}
 
-return (0);
+	putchar('\n');
+	return (0);
 }

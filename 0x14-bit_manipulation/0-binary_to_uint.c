@@ -3,46 +3,39 @@
 #include <stdio.h>
 
 /**
- * _strlen - find the length of a string
- * @s: pointer to the string to check
- * Return: void
-*/
+ * _strlen - calculates the length of the string
+ * @s: input
+ * Return: length of string
+ */
 
-
-int _strlen(const char *s)
+unsigned int _strlen(const char *s)
 {
-int i = 0;
-while (s[i])
-	i++;
+	unsigned int i;
 
-return (i);
+	for (i = 0; s[i]; i++)
+		;
+	return (i);
 }
 
-
 /**
- * binary_to_uint - converts a binary number to an unsigned int
- * @b: binary number
- *
- * Return: 0 or converted number
+ * binary_to_uint - converts binary to decimal.
+ * @b: binary input.
+ * Return: decimal.
  */
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int n = 0;
-	int i, len;
+	unsigned int dec = 0, count, powr = 1;
+	int i;
 
 	if (b == NULL)
 		return (0);
-
-	len = _strlen(b);
-
-	for (i = 0; i != len; i++)
+	for (i = _strlen(b) - 1; b[i] != '\0'; i--, (powr = powr * 2))
 	{
-		if (b[len - i - 1] == '1')
-			n += 1 << i;
-		else if (b[len - i - 1] != '0')
+		if (b[i] != '1' && b[i] != '0')
 			return (0);
+		count = ((b[i] - '0') * powr);
+		dec += count;
 	}
-
-	return (n);
+	return (dec);
 }
